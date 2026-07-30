@@ -16,8 +16,19 @@ export default function VideosPage() {
 
   const filtered = SAMPLE_VIDEOS.filter((vid) => {
     if (selectedTag === "all") return true;
-    const desc = locale === "en" ? vid.description_en : vid.description_fr;
-    return desc.toLowerCase().includes(selectedTag.toLowerCase()) || (locale === "en" ? vid.title_en : vid.title_fr).toLowerCase().includes(selectedTag.toLowerCase());
+    const tagLower = selectedTag.toLowerCase();
+    
+    // Check both English and French titles/descriptions
+    const matchEn = vid.title_en.toLowerCase().includes(tagLower) || vid.description_en.toLowerCase().includes(tagLower);
+    const matchFr = vid.title_fr.toLowerCase().includes(tagLower) || vid.description_fr.toLowerCase().includes(tagLower);
+    
+    // Fallback: map French bariatrique terms if tag is Bariatric Surgery
+    if (tagLower === "bariatric surgery") {
+      const matchBariatrique = vid.title_fr.toLowerCase().includes("bariatrique") || vid.description_fr.toLowerCase().includes("bariatrique");
+      if (matchBariatrique) return true;
+    }
+    
+    return matchEn || matchFr;
   });
 
   return (
@@ -55,7 +66,7 @@ export default function VideosPage() {
                   : "bg-white text-[#0B1E36] border-[#E2E8F0] hover:border-rose-400"
               }`}
             >
-              {tag === "all" ? (locale === "en" ? "All Videos (3)" : "Toutes les vidéos") : tag}
+              {tag === "all" ? (locale === "en" ? `All Videos (${SAMPLE_VIDEOS.length})` : `Toutes les vidéos (${SAMPLE_VIDEOS.length})`) : tag}
             </button>
           ))}
         </div>

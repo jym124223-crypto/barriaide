@@ -90,33 +90,13 @@ export const SAMPLE_DISCUSSIONS: SampleDiscussion[] = [
 export const SAMPLE_VIDEOS: SampleVideo[] = [
   {
     id: "vid-1",
-    youtube_id: "dQw4w9WgXcQ", // Placeholder clean YouTube ID
-    title_en: "Understanding GLP-1 Medications: Myths, Mechanisms, and Realistic Expectations",
-    title_fr: "Comprendre les médicaments GLP-1 : mythes, mécanismes et attentes réalistes",
-    description_en: "An accessible breakdown of how incretin hormones work, why obesity is a chronic metabolic condition, and how to track non-scale progress.",
-    description_fr: "Une explication claire du fonctionnement des hormones incrétines, de l'obésité comme maladie métabolique chronique et des progrès globaux.",
-    duration: "14:20",
-    thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "vid-2",
-    youtube_id: "L_LUpnjgPso",
-    title_en: "Post-Bariatric Nutrition: Reaching Daily Protein Goals Without Overwhelming Your Stomach",
-    title_fr: "Nutrition post-bariatrique : atteindre ses objectifs en protéines sans saturer son estomac",
-    description_en: "Specialist dietitian tips for spacing protein throughout the day, choosing high-tolerance foods, and maintaining long-term muscle mass.",
-    description_fr: "Conseils de diététistes spécialisés pour répartir les protéines, choisir des aliments tolérés et préserver sa masse musculaire à long terme.",
-    duration: "18:45",
-    thumbnail: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "vid-3",
-    youtube_id: "e-ORhEE9eVg",
-    title_en: "Rebuilding Your Relationship with Movement and Gentle Physical Activity",
-    title_fr: "Reconstruire sa relation avec l'activité physique et le mouvement en douceur",
-    description_en: "Moving away from exercise as punishment toward joyful, sustainable physical movement that boosts energy and emotional well-being.",
-    description_fr: "Passer de l'exercice perçu comme une obligation à un mouvement corporel valorisant qui améliore l'énergie et le bien-être mental.",
-    duration: "12:10",
-    thumbnail: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop&q=80",
+    youtube_id: "MxiuGgieMiU",
+    title_en: "3 Things That Terrified Me Before Bariatric Surgery (And What Actually Happened)",
+    title_fr: "3 choses qui m'ont terrifié avant la chirurgie bariatrique (et ce qui s'est réellement passé)",
+    description_en: "A personal breakdown of major pre-op fears (anesthesia, food grief, and surgical complications) and the reality after losing 105 lbs.",
+    description_fr: "Un partage sincère sur les grandes craintes pré-opératoires (anesthésie, deuil alimentaire et complications) et la réalité après une perte de 105 lbs.",
+    duration: "13:42",
+    thumbnail: "https://i.ytimg.com/vi/MxiuGgieMiU/maxresdefault.jpg",
   },
 ];
 

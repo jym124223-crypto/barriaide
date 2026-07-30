@@ -27,7 +27,7 @@ export function Section3() {
           </div>
 
           <a
-            href="https://youtube.com/@barriaide"
+            href="https://www.youtube.com/@barriaide?sub_confirmation=1"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm bg-[#F97316] text-white hover:bg-[#EA580C] shadow-sm transition-all self-start md:self-auto focus-ring"
@@ -134,7 +134,7 @@ export function Section3() {
                 </div>
               </div>
               <a
-                href={`https://youtube.com/watch?v=${activeVideo.youtube_id}`}
+                href={`https://www.youtube.com/watch?v=${activeVideo.youtube_id}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-xl font-bold text-sm bg-[#F97316] text-white hover:bg-[#EA580C] transition-all shadow-md flex items-center gap-2"

@@ -720,6 +720,7 @@ export default function SolopreneurWorkspace() {
           { id: "scripts", label: isFr ? "🎬 Templates YouTube" : "🎬 YouTube Templates", color: "border-red-500 text-red-400 bg-red-500/10" },
           { id: "timer", label: isFr ? "⏱️ Minuteur Focus" : "⏱️ Focus Timer", color: "border-amber-500 text-amber-400 bg-amber-500/10" },
           { id: "strategy", label: isFr ? "🧠 Stratégie Globale" : "🧠 Global Strategy", color: "border-slate-500 text-slate-400 bg-slate-500/10" },
+          { id: "store", label: isFr ? "🛍️ Boutique Digitale" : "🛍️ Digital Store", color: "border-pink-500 text-pink-400 bg-pink-500/10" },
         ].map(tab => (
           <button
             key={tab.id}
@@ -1250,9 +1251,18 @@ export default function SolopreneurWorkspace() {
                 <PlusCircle className="w-4 h-4 text-green-400" />
                 <span>{isFr ? "Ajouter Ligne" : "Add Row"}</span>
               </button>
+              {currentSheet && currentSheet.id === "budget" && (
+                <button 
+                  onClick={() => setActiveTab("store")}
+                  className="px-3.5 py-1.5 text-xs font-bold bg-slate-900 hover:bg-slate-800 text-pink-400 border border-pink-500/35 rounded-xl transition-colors flex items-center gap-1 cursor-pointer"
+                  title={isFr ? "Obtenir le fichier Excel V3 (.xlsx)" : "Get raw Excel file V3 (.xlsx)"}
+                >
+                  <span>🛍️ {isFr ? "Obtenir Excel (.xlsx)" : "Get Excel (.xlsx)"}</span>
+                </button>
+              )}
               <button 
                 onClick={handleExportCsv}
-                className="px-3.5 py-1.5 text-xs font-bold bg-green-600 text-white rounded-xl hover:bg-green-500 transition-colors flex items-center gap-1.5 shadow-md"
+                className="px-3.5 py-1.5 text-xs font-bold bg-green-600 text-white rounded-xl hover:bg-green-500 transition-colors flex items-center gap-1.5 shadow-md cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{isFr ? "Exporter CSV" : "Export CSV"}</span>
@@ -1548,6 +1558,124 @@ export default function SolopreneurWorkspace() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ------------------------------------------
+          TAB 8: DIGITAL STORE (BOUTIQUE DIGITALE)
+          ------------------------------------------ */}
+      {activeTab === "store" && (
+        <div className="space-y-6">
+          <div className="bg-slate-850/20 p-6 rounded-2xl border border-slate-800 space-y-6">
+            <div className="border-b border-slate-800 pb-3">
+              <h3 className="text-base font-extrabold text-white flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-pink-400" />
+                <span>{isFr ? "Boutique de Produits Digitaux & Boîte à Outils" : "Digital Product Store & Toolkit Hub"}</span>
+              </h3>
+              <p className="text-xs text-slate-400 mt-1">
+                {isFr 
+                  ? "Monétisez votre audience grâce à ces solutions prêtes à l'emploi. Vos clients achètent et téléchargent en 1 clic."
+                  : "Monetize your audience with these high-converting ready-made files. Fully automated 1-click downloads."}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Product 1: Excel Sheet */}
+              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-pink-500/30 transition-all group">
+                <div className="space-y-3">
+                  <span className="px-2 py-0.5 rounded-sm text-[9px] font-bold uppercase tracking-wider bg-green-500/10 text-green-400 border border-green-500/20">
+                    EXCEL / SPREADSHEET
+                  </span>
+                  <h4 className="text-sm font-extrabold text-white group-hover:text-pink-400 transition-colors">
+                    {isFr ? "Tableur Métabolique GLP-1 & Bariatrique V3" : "GLP-1 & Bariatric Metabolic Tracker V3"}
+                  </h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    {isFr 
+                      ? "Le fichier Excel (.xlsx) complet avec macros et formules de courbes automatiques pour suivre le poids, les protéines, l'hydratation et le cycle des injections."
+                      : "The complete desktop Excel (.xlsx) file with pre-built macro formulas and dynamic charts to track weight, protein, hydration, and shot cycles."}
+                  </p>
+                  <ul className="text-[10px] text-slate-500 space-y-1.5 pt-1">
+                    <li>✔️ {isFr ? "Formules automatiques de moyenne mobile" : "Auto rolling-average formulas"}</li>
+                    <li>✔️ {isFr ? "Graphe de perte de poids réaliste" : "Realistic weight projection charts"}</li>
+                    <li>✔️ {isFr ? "Journal imprimable et exportable" : "Printable and exportable logs"}</li>
+                  </ul>
+                </div>
+                <div className="pt-5 border-t border-slate-850 mt-4 flex items-center justify-between gap-2">
+                  <div className="text-lg font-black text-white">19.00 $</div>
+                  <button 
+                    onClick={() => alert(isFr ? "Simulated Stripe Checkout link (19 $): Achat et téléchargement instantané du fichier .xlsx" : "Simulated Stripe Checkout (19 $): Instant .xlsx download")}
+                    className="px-4 py-2 text-xs font-bold bg-pink-650 hover:bg-pink-600 text-white rounded-xl transition-all shadow-md cursor-pointer"
+                  >
+                    {isFr ? "Acheter (.xlsx)" : "Buy (.xlsx)"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Product 2: PDF Recipes */}
+              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-pink-500/30 transition-all group">
+                <div className="space-y-3">
+                  <span className="px-2 py-0.5 rounded-sm text-[9px] font-bold uppercase tracking-wider bg-teal-500/10 text-teal-400 border border-teal-500/20">
+                    PDF EBOOK
+                  </span>
+                  <h4 className="text-sm font-extrabold text-white group-hover:text-pink-400 transition-colors">
+                    {isFr ? "30 Recettes Protéinées spécial Petit Estomac" : "30 High-Protein Recipes for Tiny Stomachs"}
+                  </h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    {isFr 
+                      ? "Des repas simples, savoureux et hyper-digestes contenant au moins 25g de protéines par portion, parfaits après bypass/sleeve ou sous GLP-1."
+                      : "Delicious, highly digestible meals with at least 25g of protein per portion, perfect after surgery or during active GLP-1 therapy."}
+                  </p>
+                  <ul className="text-[10px] text-slate-500 space-y-1.5 pt-1">
+                    <li>✔️ {isFr ? "Ingrédients anti-nausées et anti-reflux" : "Anti-nausea & anti-reflux ingredients"}</li>
+                    <li>✔️ {isFr ? "Portions réalistes calibrées" : "Calibrated realistic small portions"}</li>
+                    <li>✔️ {isFr ? "Liste de courses type pré-remplie" : "Pre-filled grocery shopping list"}</li>
+                  </ul>
+                </div>
+                <div className="pt-5 border-t border-slate-850 mt-4 flex items-center justify-between gap-2">
+                  <div className="text-lg font-black text-white">27.00 $</div>
+                  <button 
+                    onClick={() => alert(isFr ? "Simulated Stripe Checkout link (27 $): Achat et téléchargement instantané du guide PDF" : "Simulated Stripe Checkout (27 $): Instant PDF download")}
+                    className="px-4 py-2 text-xs font-bold bg-pink-650 hover:bg-pink-600 text-white rounded-xl transition-all shadow-md cursor-pointer"
+                  >
+                    {isFr ? "Acheter (PDF)" : "Buy (PDF)"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Product 3: Audio/PDF mindset */}
+              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-pink-500/30 transition-all group">
+                <div className="space-y-3">
+                  <span className="px-2 py-0.5 rounded-sm text-[9px] font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                    AUDIO + PDF PACK
+                  </span>
+                  <h4 className="text-sm font-extrabold text-white group-hover:text-pink-400 transition-colors">
+                    {isFr ? "Pack Mental : Vaincre le Deuil Alimentaire" : "Mindset Pack: Overcoming Food Grief"}
+                  </h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    {isFr 
+                      ? "Un guide d'accompagnement psychologique et fiches mémo pour gérer la disparition du réconfort alimentaire et le regard des autres."
+                      : "A psychological audio guide and workbook on dealing with the emotional void when food is no longer a coping mechanism."}
+                  </p>
+                  <ul className="text-[10px] text-slate-500 space-y-1.5 pt-1">
+                    <li>✔️ {isFr ? "3 sessions audio d'écoute guidée (MP3)" : "3 guided audio listening sessions (MP3)"}</li>
+                    <li>✔️ {isFr ? "Fiches de phrases-boucliers de 1 ligne" : "Workbook with 1-line boundary scripts"}</li>
+                    <li>✔️ {isFr ? "Exercices de journaling quotidien" : "Daily mindset journaling prompts"}</li>
+                  </ul>
+                </div>
+                <div className="pt-5 border-t border-slate-850 mt-4 flex items-center justify-between gap-2">
+                  <div className="text-lg font-black text-white">29.00 $</div>
+                  <button 
+                    onClick={() => alert(isFr ? "Simulated Stripe Checkout link (29 $): Achat et téléchargement instantané du pack audio/PDF" : "Simulated Stripe Checkout (29 $): Instant audio/PDF download")}
+                    className="px-4 py-2 text-xs font-bold bg-pink-650 hover:bg-pink-600 text-white rounded-xl transition-all shadow-md cursor-pointer"
+                  >
+                    {isFr ? "Acheter (Pack)" : "Buy (Pack)"}
+                  </button>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
