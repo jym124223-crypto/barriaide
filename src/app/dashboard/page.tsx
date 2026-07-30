@@ -20,10 +20,12 @@ import {
   Video,
   BookOpen,
 } from "lucide-react";
+import SolopreneurWorkspace from "@/components/SolopreneurWorkspace";
 
 export default function DashboardPage() {
   const { locale } = useLanguage();
   const { user, logout, login } = useAuth();
+  const [dashboardMode, setDashboardMode] = useState<"community" | "solopreneur">("community");
 
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [editedName, setEditedName] = useState(user?.displayName || "Elena R.");
@@ -64,8 +66,37 @@ export default function DashboardPage() {
       <Header />
 
       <main className="flex-grow py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
-        {/* Top Profile Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        {/* Toggle Mode Switcher */}
+        <div className="flex bg-slate-100 p-1 rounded-2xl border border-slate-200 max-w-sm sm:max-w-md">
+          <button
+            onClick={() => setDashboardMode("community")}
+            className={`flex-1 py-2 text-xs sm:text-sm rounded-xl font-extrabold transition-all cursor-pointer ${
+              dashboardMode === "community"
+                ? "bg-white text-[#0B1E36] shadow-xs"
+                : "text-[#64748B] hover:text-[#0B1E36]"
+            }`}
+          >
+            {locale === "en" ? "👥 Community Hub" : "👥 Espace Communauté"}
+          </button>
+          <button
+            onClick={() => setDashboardMode("solopreneur")}
+            className={`flex-1 py-2 text-xs sm:text-sm rounded-xl font-extrabold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              dashboardMode === "solopreneur"
+                ? "bg-[#0D9488] text-white shadow-xs"
+                : "text-[#64748B] hover:text-[#0B1E36]"
+            }`}
+          >
+            <span>⚡ {locale === "en" ? "Solopreneur Suite" : "Espace Créateur"}</span>
+          </button>
+        </div>
+
+        {dashboardMode === "solopreneur" ? (
+          <SolopreneurWorkspace />
+        ) : (
+          <>
+            {/* Top Profile Card */}
+            <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-3 flex flex-col items-center text-center space-y-3 border-b md:border-b-0 md:border-r border-[#E2E8F0] pb-6 md:pb-0 md:pr-6">
             <div className="relative w-28 h-28 rounded-3xl overflow-hidden border-2 border-[#0D9488]/30 shadow-md">
               <img
@@ -285,6 +316,8 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
+          </>
+        )}
       </main>
 
       <Footer />
