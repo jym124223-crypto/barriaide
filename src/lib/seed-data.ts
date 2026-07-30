@@ -22,70 +22,7 @@ export interface SampleVideo {
   thumbnail: string;
 }
 
-export const SAMPLE_DISCUSSIONS: SampleDiscussion[] = [
-  {
-    id: "disc-1",
-    title_en: "What helped you manage nausea during your first month on a GLP-1?",
-    title_fr: "Qu'est-ce qui vous a aidé à gérer la nausée durant votre premier mois sous GLP-1 ?",
-    category_key: "glp1",
-    category_en: "GLP-1 & Weight-Loss Medications",
-    category_fr: "GLP-1 et médicaments pour la perte de poids",
-    reply_count: 34,
-    last_active_en: "12m ago",
-    last_active_fr: "il y a 12m",
-    avatars: [
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80",
-    ],
-  },
-  {
-    id: "disc-2",
-    title_en: "How did you prepare emotionally for bariatric surgery?",
-    title_fr: "Comment vous êtes-vous préparé émotionnellement à la chirurgie bariatrique ?",
-    category_key: "prepSurgery",
-    category_en: "Preparing for Bariatric Surgery",
-    category_fr: "Se préparer à la chirurgie bariatrique",
-    reply_count: 28,
-    last_active_en: "45m ago",
-    last_active_fr: "il y a 45m",
-    avatars: [
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=80",
-    ],
-  },
-  {
-    id: "disc-3",
-    title_en: "What are your favourite high-protein breakfasts that are easy on the stomach?",
-    title_fr: "Quels sont vos petits-déjeuners riches en protéines favoris et doux pour l'estomac ?",
-    category_key: "nutrition",
-    category_en: "Nutrition and Protein",
-    category_fr: "Nutrition et protéines",
-    reply_count: 52,
-    last_active_en: "2h ago",
-    last_active_fr: "il y a 2h",
-    avatars: [
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=120&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80",
-    ],
-  },
-  {
-    id: "disc-4",
-    title_en: "How do you handle comments from coworkers about your changing body?",
-    title_fr: "Comment gérez-vous les commentaires de vos collègues sur votre corps qui change ?",
-    category_key: "mentalHealth",
-    category_en: "Mental Well-Being & Body Image",
-    category_fr: "Santé mentale et image corporelle",
-    reply_count: 41,
-    last_active_en: "3h ago",
-    last_active_fr: "il y a 3h",
-    avatars: [
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80",
-    ],
-  },
-];
+export const SAMPLE_DISCUSSIONS: SampleDiscussion[] = [];
 
 export const SAMPLE_VIDEOS: SampleVideo[] = [
   {

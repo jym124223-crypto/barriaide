@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/lib/i18n";
@@ -30,6 +30,18 @@ export default function DashboardPage() {
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [editedName, setEditedName] = useState(user?.displayName || "Elena R.");
   const [editedBio, setEditedBio] = useState(user?.bio || "Navigating month 8 on GIP/GLP-1 therapy.");
+  const [threads, setThreads] = useState<any[]>([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("barriaide_forum_threads");
+    if (stored) {
+      try {
+        setThreads(JSON.parse(stored));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, []);
 
   const handleSaveProfile = () => {
     if (user) {
@@ -256,22 +268,40 @@ export default function DashboardPage() {
             </div>
 
             <div className="space-y-3">
-              <Link
-                href="/community/1"
-                className="block p-4 rounded-2xl bg-[#FDFBF7] border border-[#E2E8F0] hover:border-[#0D9488] transition-all space-y-1"
-              >
-                <div className="text-xs font-bold text-[#0D9488]">GLP-1 MEDICATIONS</div>
-                <div className="text-sm font-bold text-[#0B1E36]">What helped you manage nausea during your first month?</div>
-                <div className="text-[11px] text-[#64748B]">34 replies • Active 2h ago</div>
-              </Link>
-              <Link
-                href="/community/3"
-                className="block p-4 rounded-2xl bg-[#FDFBF7] border border-[#E2E8F0] hover:border-[#0D9488] transition-all space-y-1"
-              >
-                <div className="text-xs font-bold text-[#D97706]">NUTRITION & PROTEIN</div>
-                <div className="text-sm font-bold text-[#0B1E36]">High-protein breakfasts that don&apos;t feel heavy</div>
-                <div className="text-[11px] text-[#64748B]">42 replies • Active 5h ago</div>
-              </Link>
+              {threads.length > 0 ? (
+                threads.slice(0, 2).map((thread) => {
+                  const title = locale === "en" ? thread.title_en : thread.title_fr;
+                  const category = locale === "en" ? thread.category_en : thread.category_fr;
+                  const lastActive = locale === "en" ? thread.last_active_en : thread.last_active_fr;
+                  return (
+                    <Link
+                      key={thread.id}
+                      href={`/community/${thread.id}`}
+                      className="block p-4 rounded-2xl bg-[#FDFBF7] border border-[#E2E8F0] hover:border-[#0D9488] transition-all space-y-1"
+                    >
+                      <div className="text-xs font-bold text-[#0D9488] uppercase">{category}</div>
+                      <div className="text-sm font-bold text-[#0B1E36]">{title}</div>
+                      <div className="text-[11px] text-[#64748B]">
+                        {thread.reply_count} {locale === "en" ? "replies" : "réponses"} • {locale === "en" ? `Active ${lastActive}` : `Actif ${lastActive}`}
+                      </div>
+                    </Link>
+                  );
+                })
+              ) : (
+                <div className="p-6 rounded-2xl bg-[#FDFBF7] border border-[#E2E8F0] text-center space-y-3">
+                  <p className="text-xs text-[#64748B]">
+                    {locale === "en" 
+                      ? "No discussions active yet. Start the very first community thread!"
+                      : "Aucune discussion active pour le moment. Lancez la toute première discussion !"}
+                  </p>
+                  <Link
+                    href="/community"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#0D9488] hover:bg-[#0F766E] transition-all"
+                  >
+                    {locale === "en" ? "Visit Forums" : "Visiter les Forums"}
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
 

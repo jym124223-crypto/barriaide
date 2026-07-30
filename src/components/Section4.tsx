@@ -1,13 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useLanguage } from "../lib/i18n";
-import { SAMPLE_DISCUSSIONS } from "../lib/seed-data";
 import { MessageSquare, Clock, Users, ArrowUpRight, ShieldAlert } from "lucide-react";
 
 export function Section4() {
   const { locale, t } = useLanguage();
+  const [threads, setThreads] = useState<any[]>([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("barriaide_forum_threads");
+    if (stored) {
+      try {
+        setThreads(JSON.parse(stored));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, []);
 
   return (
     <section className="py-20 lg:py-28 bg-[#FDFBF7]">
@@ -46,73 +57,93 @@ export function Section4() {
 
         {/* Discussions List */}
         <div className="grid gap-4">
-          {SAMPLE_DISCUSSIONS.map((disc) => {
-            const title = locale === "en" ? disc.title_en : disc.title_fr;
-            const category = locale === "en" ? disc.category_en : disc.category_fr;
-            const lastActive = locale === "en" ? disc.last_active_en : disc.last_active_fr;
+          {threads.length > 0 ? (
+            threads.slice(0, 4).map((disc) => {
+              const title = locale === "en" ? disc.title_en : disc.title_fr;
+              const category = locale === "en" ? disc.category_en : disc.category_fr;
+              const lastActive = locale === "en" ? disc.last_active_en : disc.last_active_fr;
 
-            return (
-              <div
-                key={disc.id}
-                className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-6 group"
-              >
-                {/* Left Side: Category + Title */}
-                <div className="space-y-2.5 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-[#FDFBF7] text-[#F97316] border border-[#E2E8F0]">
-                      {category}
-                    </span>
-                    <span className="text-xs text-[#64748B] flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>{t.section4.lastActiveLabel}: {lastActive}</span>
-                    </span>
-                  </div>
-
-                  <Link href="/community" className="block">
-                    <h3 className="text-lg sm:text-xl font-bold text-[#09090B] group-hover:text-[#F97316] transition-colors leading-snug">
-                      {title}
-                    </h3>
-                  </Link>
-                </div>
-
-                {/* Right Side: Avatars + Replies + Action */}
-                <div className="flex items-center justify-between sm:justify-end gap-6 pt-3 sm:pt-0 border-t sm:border-t-0 border-[#E2E8F0] shrink-0">
-                  {/* Member Avatars Overlap */}
-                  <div className="flex items-center">
-                    <div className="flex -space-x-2 overflow-hidden">
-                      {disc.avatars.map((avatar, idx) => (
-                        <img
-                          key={idx}
-                          src={avatar}
-                          alt="Member"
-                          className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover"
-                        />
-                      ))}
+              return (
+                <div
+                  key={disc.id}
+                  className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-6 group"
+                >
+                  {/* Left Side: Category + Title */}
+                  <div className="space-y-2.5 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-[#FDFBF7] text-[#F97316] border border-[#E2E8F0]">
+                        {category}
+                      </span>
+                      <span className="text-xs text-[#64748B] flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span>{t.section4.lastActiveLabel}: {lastActive}</span>
+                      </span>
                     </div>
-                    <span className="ml-2 text-xs font-semibold text-[#64748B] flex items-center gap-1">
-                      <Users className="w-3.5 h-3.5 text-[#F97316]" />
-                      <span>+{disc.reply_count}</span>
-                    </span>
+
+                    <Link href={`/community/${disc.id}`} className="block">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#09090B] group-hover:text-[#F97316] transition-colors leading-snug">
+                        {title}
+                      </h3>
+                    </Link>
                   </div>
 
-                  {/* Replies Badge */}
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FDFBF7] border border-[#E2E8F0] text-xs font-bold text-[#09090B]">
-                    <MessageSquare className="w-3.5 h-3.5 text-[#F97316]" />
-                    <span>{disc.reply_count} {t.section4.repliesLabel}</span>
-                  </div>
+                  {/* Right Side: Avatars + Replies + Action */}
+                  <div className="flex items-center justify-between sm:justify-end gap-6 pt-3 sm:pt-0 border-t sm:border-t-0 border-[#E2E8F0] shrink-0">
+                    {/* Member Avatars Overlap */}
+                    <div className="flex items-center">
+                      <div className="flex -space-x-2 overflow-hidden">
+                        {disc.avatars?.map((avatar: string, idx: number) => (
+                          <img
+                            key={idx}
+                            src={avatar}
+                            alt="Member"
+                            className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover"
+                          />
+                        ))}
+                      </div>
+                      <span className="ml-2 text-xs font-semibold text-[#64748B] flex items-center gap-1">
+                        <Users className="w-3.5 h-3.5 text-[#F97316]" />
+                        <span>+{disc.reply_count}</span>
+                      </span>
+                    </div>
 
-                  {/* Join Thread Button */}
-                  <Link
-                    href="/community"
-                    className="p-2.5 rounded-xl bg-[#09090B]/5 hover:bg-[#F97316] hover:text-white transition-colors text-[#09090B] focus-ring shrink-0"
-                    aria-label="View thread"
-                  >
-                    <ArrowUpRight className="w-4 h-4" />
-                  </Link>
+                    {/* Replies Badge */}
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FDFBF7] border border-[#E2E8F0] text-xs font-bold text-[#09090B]">
+                      <MessageSquare className="w-3.5 h-3.5 text-[#F97316]" />
+                      <span>{disc.reply_count} {t.section4.repliesLabel}</span>
+                    </div>
+
+                    {/* Join Thread Button */}
+                    <Link
+                      href={`/community/${disc.id}`}
+                      className="p-2.5 rounded-xl bg-[#09090B]/5 hover:bg-[#F97316] hover:text-white transition-colors text-[#09090B] focus-ring shrink-0"
+                      aria-label="View thread"
+                    >
+                      <ArrowUpRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 </div>
+              );
+            })
+          ) : (
+            <div className="bg-white rounded-3xl p-12 border border-[#E2E8F0] text-center space-y-4 shadow-2xs">
+              <MessageSquare className="w-12 h-12 text-[#64748B]/40 mx-auto" />
+              <div className="text-lg font-bold text-[#09090B]">
+                {locale === "en" ? "Welcome to our new community!" : "Bienvenue dans notre nouvelle communauté !"}
               </div>
-            );
-          })}
+              <p className="text-sm text-[#64748B] max-w-sm mx-auto">
+                {locale === "en" 
+                  ? "No discussion topics have been created yet. Be the first to start a conversation!"
+                  : "Aucun sujet de discussion n'a encore été créé. Soyez le premier à lancer la conversation !"}
+              </p>
+              <Link
+                href="/community"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs bg-[#F97316] text-white hover:bg-[#EA580C] shadow-md transition-colors"
+              >
+                {locale === "en" ? "Create First Thread" : "Créer le premier sujet"}
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Footer Link */}

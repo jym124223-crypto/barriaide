@@ -6,7 +6,19 @@ import { useLanguage } from "../lib/i18n";
 import { Heart, Sparkles, ArrowRight, ShieldCheck, Users } from "lucide-react";
 
 export function Hero() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
+  const [threads, setThreads] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    const stored = localStorage.getItem("barriaide_forum_threads");
+    if (stored) {
+      try {
+        setThreads(JSON.parse(stored));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, []);
 
   return (
     <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-[#FDFBF7]">
@@ -102,43 +114,57 @@ export function Hero() {
                 </div>
 
                 <div className="space-y-4">
-                  {/* Testimonial Card 1 */}
-                  <div className="bg-[#FDFBF7] p-4 rounded-2xl border border-[#E2E8F0]/80 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-full bg-orange-600 text-white font-bold flex items-center justify-center text-xs">
-                          EL
-                        </div>
-                        <div>
-                          <div className="text-xs font-bold text-[#09090B]">Elena R. (GLP-1 Path)</div>
-                          <div className="text-[10px] text-[#64748B]">Montréal, QC</div>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-semibold text-[#F97316]">Just now</span>
-                    </div>
-                    <p className="text-xs text-[#09090B]/90 italic">
-                      &quot;Finding a space that honors both medication and emotional healing without judgment has completely changed how I care for my body.&quot;
-                    </p>
-                  </div>
+                  {threads.length > 0 ? (
+                    threads.slice(0, 2).map((thread) => {
+                      const title = locale === "en" ? thread.title_en : thread.title_fr;
+                      const author = thread.authorName || "Community Member";
+                      const date = locale === "en" ? "Just now" : "À l'instant";
+                      const category = locale === "en" ? thread.category_en : thread.category_fr;
+                      const avatarInitials = author.slice(0, 2).toUpperCase();
 
-                  {/* Testimonial Card 2 */}
-                  <div className="bg-[#FDFBF7] p-4 rounded-2xl border border-[#E2E8F0]/80 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-full bg-yellow-600 text-white font-bold flex items-center justify-center text-xs">
-                          M
+                      return (
+                        <div key={thread.id} className="bg-[#FDFBF7] p-4 rounded-2xl border border-[#E2E8F0]/80 space-y-2">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2.5">
+                              <div className="w-8 h-8 rounded-full bg-orange-600 text-white font-bold flex items-center justify-center text-xs">
+                                {avatarInitials}
+                              </div>
+                              <div>
+                                <div className="text-xs font-bold text-[#09090B]">{author}</div>
+                                <div className="text-[10px] text-[#0D9488] uppercase font-bold">{category}</div>
+                              </div>
+                            </div>
+                            <span className="text-[10px] font-semibold text-[#F97316]">{date}</span>
+                          </div>
+                          <p className="text-xs text-[#09090B]/90 italic leading-relaxed">
+                            "{title}"
+                          </p>
                         </div>
-                        <div>
-                          <div className="text-xs font-bold text-[#09090B]">Marc-Antoine (Chirurgie)</div>
-                          <div className="text-[10px] text-[#64748B]">Québec, QC</div>
-                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="bg-[#FDFBF7] p-6 rounded-2xl border border-[#E2E8F0]/80 text-center space-y-3.5">
+                      <div className="w-10 h-10 rounded-full bg-[#F97316]/10 text-[#F97316] flex items-center justify-center mx-auto text-lg">
+                        ✨
                       </div>
-                      <span className="text-[10px] font-semibold text-[#EAB308]">Il y a 5 min</span>
+                      <div className="space-y-1">
+                        <h4 className="text-xs font-black text-[#09090B] uppercase tracking-wider">
+                          {locale === "en" ? "Welcome to BarriAide" : "Bienvenue sur BarriAide"}
+                        </h4>
+                        <p className="text-xs text-[#64748B] leading-relaxed">
+                          {locale === "en"
+                            ? "A safe space for bariatric sleeve, bypass, and GLP-1 journeys. Be the first to start a conversation in the forums!"
+                            : "Un espace sécurisé pour les parcours sleeve, bypass et GLP-1. Soyez le premier à poser une question dans le forum !"}
+                        </p>
+                      </div>
+                      <Link
+                        href="/community"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#F97316] hover:bg-[#EA580C] shadow-sm transition-all"
+                      >
+                        {locale === "en" ? "Visit Forum" : "Visiter le Forum"}
+                      </Link>
                     </div>
-                    <p className="text-xs text-[#09090B]/90 italic">
-                      &quot;Deux ans après ma chirurgie bariatrique, le soutien pour le maintien à long terme de cette communauté est inestimable.&quot;
-                    </p>
-                  </div>
+                  )}
                 </div>
 
                 <div className="pt-2">
@@ -146,7 +172,7 @@ export function Hero() {
                     href="/community"
                     className="block w-full py-3 px-4 rounded-xl text-center text-xs font-bold text-[#F97316] bg-[#F97316]/10 hover:bg-[#F97316]/20 transition-colors"
                   >
-                    → Explore 12 Bilingual Support Categories
+                    {locale === "en" ? "→ Explore 12 Bilingual Support Categories" : "→ Explorer 12 catégories de soutien bilingues"}
                   </Link>
                 </div>
               </div>
