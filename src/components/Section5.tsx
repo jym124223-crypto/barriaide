@@ -27,18 +27,18 @@ export function Section5() {
               <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden border-4 border-white shadow-xl bg-slate-100 group">
                 {/* Respectful, realistic, diverse founder portrait representation */}
                 <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80"
+                  src="/images/founder.png"
                   alt="Founder of Barriaide"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 text-white text-xs font-semibold">
-                  Founder Image / Photo
+                  Jean-Yves (-105 lbs)
                 </div>
               </div>
 
               <div>
                 <div className="font-extrabold text-lg text-[#09090B] flex items-center justify-center gap-1.5">
-                  <span>Founder Placeholder</span>
+                  <span>Jean-Yves</span>
                   <Sparkles className="w-4 h-4 text-[#EAB308]" />
                 </div>
                 <div className="text-xs font-semibold text-[#F97316] uppercase tracking-wider">

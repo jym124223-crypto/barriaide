@@ -37,13 +37,13 @@ export default function AboutPage() {
           <div className="md:col-span-5 flex flex-col items-center text-center space-y-4">
             <div className="w-44 h-44 rounded-3xl overflow-hidden border-4 border-white shadow-xl bg-slate-100">
               <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80"
+                src="/images/founder.png"
                 alt="Barriaide Founder"
                 className="w-full h-full object-cover"
               />
             </div>
             <div>
-              <div className="font-extrabold text-lg text-[#0B1E36]">Barriaide Founder & Team</div>
+              <div className="font-extrabold text-lg text-[#0B1E36]">Jean-Yves (Fondateur)</div>
               <div className="text-xs font-bold text-[#0D9488] uppercase tracking-wider">Lived Experience & Liaison</div>
             </div>
           </div>

@@ -38,12 +38,12 @@ const DEFAULT_USERS: UserProfile[] = [
   {
     id: "user-admin-1",
     email: "admin@barriaide.com",
-    displayName: "Barriaide Admin & Founder Team",
+    displayName: "Jean-Yves (Fondateur & Coach)",
     role: "admin",
     preferredLanguage: "en",
     journeyCategory: "I am focusing on lifestyle changes",
-    bio: "Platform Administrator & Clinical Liaison. Dedicated to maintaining a safe, inclusive, zero-stigma environment for all weight-loss paths.",
-    avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+    bio: "Fondateur de BarriAide. Perte de poids de -105 lbs combinant chirurgie sleeve et titration GLP-1. Passionné par l'aide aux patients face au deuil alimentaire et à la transformation mentale.",
+    avatarUrl: "/images/founder.png",
   },
 ];
 
