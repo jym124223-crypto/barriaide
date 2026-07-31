@@ -114,57 +114,7 @@ export function Hero() {
                 </div>
 
                 <div className="space-y-4">
-                  {threads.length > 0 ? (
-                    threads.slice(0, 2).map((thread) => {
-                      const title = locale === "en" ? thread.title_en : thread.title_fr;
-                      const author = thread.authorName || "Community Member";
-                      const date = locale === "en" ? "Just now" : "À l'instant";
-                      const category = locale === "en" ? thread.category_en : thread.category_fr;
-                      const avatarInitials = author.slice(0, 2).toUpperCase();
-
-                      return (
-                        <div key={thread.id} className="bg-[#FDFBF7] p-4 rounded-2xl border border-[#E2E8F0]/80 space-y-2">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2.5">
-                              <div className="w-8 h-8 rounded-full bg-orange-600 text-white font-bold flex items-center justify-center text-xs">
-                                {avatarInitials}
-                              </div>
-                              <div>
-                                <div className="text-xs font-bold text-[#09090B]">{author}</div>
-                                <div className="text-[10px] text-[#0D9488] uppercase font-bold">{category}</div>
-                              </div>
-                            </div>
-                            <span className="text-[10px] font-semibold text-[#F97316]">{date}</span>
-                          </div>
-                          <p className="text-xs text-[#09090B]/90 italic leading-relaxed">
-                            "{title}"
-                          </p>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div className="bg-[#FDFBF7] p-6 rounded-2xl border border-[#E2E8F0]/80 text-center space-y-3.5">
-                      <div className="w-10 h-10 rounded-full bg-[#F97316]/10 text-[#F97316] flex items-center justify-center mx-auto text-lg">
-                        ✨
-                      </div>
-                      <div className="space-y-1">
-                        <h4 className="text-xs font-black text-[#09090B] uppercase tracking-wider">
-                          {locale === "en" ? "Welcome to BarriAide" : "Bienvenue sur BarriAide"}
-                        </h4>
-                        <p className="text-xs text-[#64748B] leading-relaxed">
-                          {locale === "en"
-                            ? "A safe space for bariatric sleeve, bypass, and GLP-1 journeys. Be the first to start a conversation in the forums!"
-                            : "Un espace sécurisé pour les parcours sleeve, bypass et GLP-1. Soyez le premier à poser une question dans le forum !"}
-                        </p>
-                      </div>
-                      <Link
-                        href="/community"
-                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#F97316] hover:bg-[#EA580C] shadow-sm transition-all"
-                      >
-                        {locale === "en" ? "Visit Forum" : "Visiter le Forum"}
-                      </Link>
-                    </div>
-                  )}
+                  {/* Testimonials section left empty as requested */}
                 </div>
 
                 <div className="pt-2">
