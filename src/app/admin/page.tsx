@@ -18,6 +18,8 @@ import {
   Sparkles,
   UserCheck,
   FileText,
+  Download,
+  ShoppingBag,
 } from "lucide-react";
 
 export default function AdminDashboardPage() {
@@ -231,6 +233,98 @@ export default function AdminDashboardPage() {
               ))}
             </div>
           )}
+        </div>
+
+        {/* Boutique Privée - Mes Outils (Added for User) */}
+        <div className="space-y-6 pt-6 border-t-2 border-dashed border-[#E2E8F0]">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <h2 className="text-xl font-bold text-[#0B1E36] flex items-center gap-2">
+                <ShoppingBag className="w-6 h-6 text-[#F97316]" />
+                <span>{locale === "en" ? "Private Boutique - My Digital Products" : "Boutique Privée - Mes Outils"}</span>
+              </h2>
+              <p className="text-sm text-[#64748B]">
+                {locale === "en" 
+                  ? "Your generated digital products are safely stored here. Click to view or download." 
+                  : "Vos produits digitaux générés sont stockés ici en toute sécurité. Cliquez pour voir ou télécharger."}
+              </p>
+            </div>
+            <span className="bg-[#F97316]/10 text-[#F97316] text-xs font-bold px-3 py-1 rounded-full border border-[#F97316]/20">
+              5 Products
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Product 1 */}
+            <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-[#0B1E36]">Tableau de Bord Bariatrique</h3>
+                <p className="text-xs text-[#64748B]">Tracker Excel pour les protéines, l'eau et les vitamines quotidiennes.</p>
+              </div>
+              <a href="/products/Tableau_Bord_Bariatrique.xlsx" download className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#09090B] hover:bg-[#27272A] text-white text-xs font-bold rounded-xl transition-colors">
+                <Download className="w-4 h-4" /> Télécharger (.xlsx)
+              </a>
+            </div>
+
+            {/* Product 2 */}
+            <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center mb-4">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-[#0B1E36]">Journal GLP-1</h3>
+                <p className="text-xs text-[#64748B]">Tracker Excel pour suivre les doses, les injections et les effets secondaires.</p>
+              </div>
+              <a href="/products/Journal_GLP1.xlsx" download className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#09090B] hover:bg-[#27272A] text-white text-xs font-bold rounded-xl transition-colors">
+                <Download className="w-4 h-4" /> Télécharger (.xlsx)
+              </a>
+            </div>
+
+            {/* Product 3 */}
+            <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-[#0B1E36]">Mindset Journal</h3>
+                <p className="text-xs text-[#64748B]">Journal psychologique PDF avec prompts quotidiens.</p>
+              </div>
+              <a href="/products/Mindset_Journal.pdf" target="_blank" className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-[#E2E8F0] hover:bg-gray-50 text-[#09090B] text-xs font-bold rounded-xl transition-colors">
+                <Download className="w-4 h-4" /> Ouvrir le PDF
+              </a>
+            </div>
+
+            {/* Product 4 */}
+            <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center mb-4">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-[#0B1E36]">Planificateur Meal Prep</h3>
+                <p className="text-xs text-[#64748B]">Guide PDF d'organisation des repas de la semaine.</p>
+              </div>
+              <a href="/products/Planificateur_Repas.pdf" target="_blank" className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-[#E2E8F0] hover:bg-gray-50 text-[#09090B] text-xs font-bold rounded-xl transition-colors">
+                <Download className="w-4 h-4" /> Ouvrir le PDF
+              </a>
+            </div>
+
+            {/* Product 5 */}
+            <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mb-4">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-[#0B1E36]">10 Collations Protéinées</h3>
+                <p className="text-xs text-[#64748B]">Le 'Freebie' gratuit pour capturer les courriels.</p>
+              </div>
+              <a href="/products/10_Collations_Proteinees.pdf" target="_blank" className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-[#E2E8F0] hover:bg-gray-50 text-[#09090B] text-xs font-bold rounded-xl transition-colors">
+                <Download className="w-4 h-4" /> Ouvrir le PDF
+              </a>
+            </div>
+          </div>
         </div>
       </main>
 
